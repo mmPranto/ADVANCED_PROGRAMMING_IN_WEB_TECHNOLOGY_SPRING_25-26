@@ -1,6 +1,18 @@
-import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  Put,
+} from '@nestjs/common';
 import { AdminService } from './admin.service';
-import { CreateManagerDTO, CreateAdminDTO } from './admin.dto';
+import {
+  CreateManagerDTO,
+  CreateAdminDTO,
+  UpdateManagerDTO,
+} from './admin.dto';
 
 @Controller('admin')
 export class AdminController {
@@ -52,5 +64,14 @@ export class AdminController {
   @Delete('deleteManager/:name')
   deleteManager(@Param('name') name: string): object {
     return this.adminService.deleteManager(name);
+  }
+
+  //manager update
+  @Put('updateManager/:name')
+  updateManager(
+    @Param('name') name: string,
+    @Body() myobj: UpdateManagerDTO,
+  ): object {
+    return this.adminService.updateManager(name, myobj);
   }
 }
