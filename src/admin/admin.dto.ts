@@ -20,7 +20,7 @@ export class CreateManagerDTO {
   })
   password: string;
 
-  @IsDateString({}, { message: 'Invalid Date Formate(ISO 8601 expected)' })
+  @IsDateString({}, { message: 'Invalid Date' })
   joiningDate: string;
 
   @IsUrl({}, { message: 'Social Media Link must be a valid URL' })

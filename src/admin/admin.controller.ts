@@ -6,6 +6,8 @@ import {
   Param,
   Delete,
   Put,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { AdminService } from './admin.service';
 import {
@@ -32,6 +34,7 @@ export class AdminController {
 
   //add new manager
   @Post('manager_add')
+  @UsePipes(new ValidationPipe())
   addManager(@Body() myobj: CreateManagerDTO): object {
     return this.adminService.addManager(myobj);
   }
@@ -68,6 +71,7 @@ export class AdminController {
 
   //manager update
   @Put('updateManager/:name')
+  @UsePipes(new ValidationPipe())
   updateManager(
     @Param('name') name: string,
     @Body() myobj: UpdateManagerDTO,
